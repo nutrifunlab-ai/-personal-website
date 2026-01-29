@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>رزومه من</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <header class="header">
+    <img src="images/profile.jpg" alt="Profile Photo" class="profile-img">
+    <h1>علی</h1>
+    <p class="job-title">Frontend Developer</p>
+  </header>
+
+  <main class="container">
+
+    <section class="resume">
+      <h2>درباره من</h2>
+      <p>
+        من یک طراح وب و توسعه‌دهنده HTML و CSS هستم که در حال یادگیری مباحث پیشرفته‌تر
+        فرانت‌اند می‌باشم و به طراحی رابط کاربری علاقه‌مندم.
+      </p>
+    </section>
+
+    <section class="skills">
+      <h2>مهارت‌ها</h2>
+      <div class="skills-list">
+        <span class="skill">HTML</span>
+        <span class="skill">CSS</span>
+        <span class="skill">طراحی صفحات ساده</span>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <a href="#contact" class="contact-btn">تماس با من</a>
+    </section>
+    <section id="contact" class="contact-section">
+      <h2>تماس با من</h2>
+      <p class="section-description">برای همکاری یا ارتباط، فرم زیر را پر کنید</p>
+  
+      <form
+  id="contact-form"
+  action="https://formspree.io/f/mojwelel"
+  method="POST"
+  class="contact-form"
+>
+  <input
+    type="text"
+    name="name"
+    placeholder="نام شما"
+    required
+  />
+
+  <input
+    type="email"
+    name="email"
+    placeholder="ایمیل شما"
+    required
+  />
+
+  <textarea
+    name="message"
+    placeholder="پیام شما"
+    required
+  ></textarea>
+
+  <!-- Honeypot (ضد اسپم) -->
+  <input type="text" name="_gotcha" style="display:none">
+
+  <button type="submit" class="submit-btn">
+    ارسال پیام
+  </button>
+
+  <p id="form-status" class="form-status"></p>
+</form>
+
+    
+  </section>
+  
+
+  </main>
+  <script>
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("form-status");
+  
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      status.textContent = "در حال ارسال...";
+  
+      const data = new FormData(form);
+  
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+  
+        if (response.ok) {
+          status.textContent = "✅ پیام شما با موفقیت ارسال شد.";
+          form.reset();
+        } else {
+          status.textContent = "❌ خطا در ارسال پیام. لطفاً دوباره تلاش کنید.";
+        }
+      } catch (error) {
+        status.textContent = "❌ مشکل ارتباط با سرور.";
+      }
+    });
+  </script>
+  
+
+</body>
+</html>
+
